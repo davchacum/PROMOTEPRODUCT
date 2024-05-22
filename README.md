@@ -2,79 +2,119 @@
 
 ## Enunciado
 
-Una vez se ha puesto en marcha la primera versión de DeliverUS, los inversores han solicitado la inclusión de una nueva funcionalidad que consiste en ofrecer a los propietarios la posibilidad de promocionar sus restaurantes. Cada propietario sólo podrá promocionar uno de sus restaurantes.
+#### Una vez se ha puesto en marcha la primera versión de DeliverUS, los inversores han solicitado la
 
-Un propietario podrá promocionar un restaurante de dos maneras distintas:
+#### inclusión de una nueva funcionalidad que consiste en ofrecer a los propietarios la posibilidad de
 
-* En el formulario de creación de restaurante. Por defecto, se seleccionará la opción de no promocionado. Si el propietario indica que el nuevo restaurante debe estar promocionado, pero ya existían restaurantes promocionados del mismo propietario, al pulsar el botón `Save` se mostrará un error y no se creará el restaurante.
+#### promocionar sus restaurantes. Cada propietario sólo podrá promocionar uno de sus restaurantes.
 
-* En la pantalla de "Mis restaurantes", mediante un botón mostrado junto a cada restaurante, que permitirá mediante su pulsación promocionar el restaurante en cuestión. Si el propietario pulsa el botón para promocionar un nuevo restaurante y ya existían otros restaurantes promocionados del mismo dueño, se procederá a promocionar el restaurante indicado y se marcará como "no promocionado" el restaurante que lo fuese anteriormente. La aplicación debe pedir confirmación al propietario cuando se pulse el botón; utilice para ello el componente suministrado `ConfirmationModal`, similar al componente `DeleteModal` utilizado en clase.
+#### Un propietario podrá promocionar un restaurante de dos maneras distintas:
 
-Además, los restaurantes promocionados aparecerán siempre al principio de los listados de restaurantes que se le presentan tanto a los propietarios como a los clientes. Además de presentarse al principio, los restaurantes promocionados deben destacarse visualmente, por lo que aparecerá una etiqueta de texto `¡En promoción!` con el color principal de la marca.
+####  En el formulario de creación de restaurante. Por defecto, se seleccionará la opción de no
 
-### Ejercicio 1
+#### promocionado. Si el propietario indica que el nuevo restaurante debe estar promocionado,
 
-Realice todos los cambios necesarios en el proyecto de backend para implementar el nuevo requisito.
+#### pero ya existían restaurantes promocionados del mismo propietario, al pulsar el
 
-### Ejercicio 2
+#### botón Save se mostrará un error y no se creará el restaurante.
 
-Realice todos los cambios necesarios en el proyecto de frontend para implementar el nuevo requisito.
+####  En la pantalla de "Mis restaurantes", mediante un botón mostrado junto a cada restaurante,
 
-![captura1](https://user-images.githubusercontent.com/19324988/235651836-d57d9c7e-4b8d-46a2-9154-b414a7abf702.png)
+#### que permitirá mediante su pulsación promocionar el restaurante en cuestión. Si el propietario
 
-![captura2](https://user-images.githubusercontent.com/19324988/235651849-4d03c7d9-f332-4952-8cbc-9fa5db4f97fb.png)
+#### pulsa el botón para promocionar un nuevo restaurante y ya existían otros restaurantes
 
-![captura3](https://user-images.githubusercontent.com/19324988/235651853-e1d13916-4f47-4e17-97e0-5696b647bee7.png)
+#### promocionados del mismo dueño, se procederá a promocionar el restaurante indicado y se
 
-## Introducción
+#### marcará como "no promocionado" el restaurante que lo fuese anteriormente. La aplicación
 
-Este repositorio incluye el backend completo (carpeta `DeliverUS-Backend`) y el frontend de `owner` (carpeta `DeliverUS-Frontend-Owner`). Servirá como base para realizar el examen de laboratorio de la asignatura.
+#### debe pedir confirmación al propietario cuando se pulse el botón; utilice para ello el
 
-## Preparación del entorno
+#### componente suministrado ConfirmationModal, similar al componente DeleteModal utilizado
 
-### a) Windows
+#### en clase.
 
-* Abra un terminal y ejecute el comando `npm run install:all:win`.
+#### Además, los restaurantes promocionados aparecerán siempre al principio de los listados de
 
-### b) Linux/MacOS
+#### restaurantes que se le presentan tanto a los propietarios como a los clientes. Además de presentarse
 
-* Abra un terminal y ejecute el comando `npm run install:all:bash`.
+#### al principio, los restaurantes promocionados deben destacarse visualmente, por lo que aparecerá
 
-## Ejecución
+#### una etiqueta de texto ¡En promoción! con el color principal de la marca.
 
-### Backend
+## Ejercicio 1
 
-* Para **rehacer las migraciones y seeders**, abra un terminal y ejecute el comando
+#### Realice todos los cambios necesarios en el proyecto de backend para implementar el nuevo
 
-    ```Bash
-    npm run migrate:backend
-    ```
+#### requisito.
 
-* Para **ejecutarlo**, abra un terminal y ejecute el comando
+## Ejercicio 2
 
-    ```Bash
-    npm run start:backend
-    ```
+#### Realice todos los cambios necesarios en el proyecto de frontend para implementar el nuevo
 
-### Frontend
+#### requisito.
 
-* Para **ejecutar la aplicación frontend de `owner`**, abra un nuevo terminal y ejecute el comando
 
-    ```Bash
-    npm run start:frontend:owner
-    ```
+## Pantallas
 
-## Depuración
 
-* Para **depurar el backend**, asegúrese de que **NO** existe una instancia en ejecución, pulse en el botón `Run and Debug` de la barra lateral, seleccione `Debug Backend` en la lista desplegable, y pulse el botón de *Play*.
+### Introducción
 
-* Para **depurar el frontend**, asegúrese de que **EXISTE** una instancia en ejecución del frontend que desee depurar, pulse en el botón `Run and Debug` de la barra lateral, seleccione `Debug Frontend` en la lista desplegable, y pulse el botón de *Play*.
+Este repositorio incluye el backend completo (carpeta DeliverUS-Backend) y el frontend de owner (carpeta DeliverUS-
+Frontend-Owner). Servirá como base para realizar el examen de laboratorio de la asignatura.
 
-## Test
+### Preparación del entorno
 
-* Para comprobar el correcto funcionamiento de backend puede ejecutar el conjunto de tests incluido a tal efecto. Para ello ejecute el siguiente comando:
+#### a) Windows
 
-    ```Bash
-    npm run test:backend
-    ```
+```
+ Abra un terminal y ejecute el comando npm run install:all:win.
+```
+#### b) Linux/MacOS
+
+```
+ Abra un terminal y ejecute el comando npm run install:all:bash.
+```
+### Ejecución
+
+#### Backend
+
+```
+ Para rehacer las migraciones y seeders , abra un terminal y ejecute el comando
+```
+```
+npm run migrate:backend
+```
+```
+ Para ejecutarlo , abra un terminal y ejecute el comando
+```
+```
+npm run start:backend
+```
+#### Frontend
+
+```
+ Para ejecutar la aplicación frontend de owner , abra un nuevo terminal y ejecute el comando
+npm run start:frontend:owner
+```
+### Depuración
+
+```
+ Para depurar el backend , asegúrese de que NO existe una instancia en ejecución, pulse en el botón Run and
+Debug de la barra lateral, seleccione Debug Backend en la lista desplegable, y pulse el botón de Play.
+ Para depurar el frontend , asegúrese de que EXISTE una instancia en ejecución del frontend que desee depurar,
+pulse en el botón Run and Debug de la barra lateral, seleccione Debug Frontend en la lista desplegable, y pulse el
+botón de Play.
+```
+### Test
+
+```
+ Para comprobar el correcto funcionamiento de backend puede ejecutar el conjunto de tests incluido a tal
+efecto. Para ello ejecute el siguiente comando:
+```
+```
+npm run test:backend
+```
 **Advertencia: Los tests no pueden ser modificados.**
+
+
