@@ -86,6 +86,11 @@ module.exports = {
           },
           key: 'id'
         }
+      },
+      porcentaje: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       }
     })
   },

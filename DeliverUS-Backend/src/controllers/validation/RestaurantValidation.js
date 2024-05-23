@@ -2,6 +2,17 @@ import { check } from 'express-validator'
 import { checkFileIsImage, checkFileMaxSize } from './FileValidationHelper.js'
 const maxFileSize = 2000000 // around 2Mb
 
+const checkPromocion = async (value, { req }) => {
+  try {
+    const prom = req.body.porcentaje // busco restaurante en la database
+    if (prom > 0 && prom <= 100) { // si no existe, lo rechaza
+      return Promise.resolve()
+    } else { return Promise.reject(new Error('Introduce un porcentaje entre 0 y 100')) }
+  } catch (err) {
+    return Promise.reject(new Error(err))
+  }
+}
+
 const create = [
   check('name').exists().isString().isLength({ min: 1, max: 255 }).trim(),
   check('description').optional({ nullable: true, checkFalsy: true }).isString().trim(),
@@ -13,6 +24,7 @@ const create = [
   check('phone').optional({ nullable: true, checkFalsy: true }).isString().isLength({ min: 1, max: 255 }).trim(),
   check('restaurantCategoryId').exists({ checkNull: true }).isInt({ min: 1 }).toInt(),
   check('userId').not().exists(),
+
   check('heroImage').custom((value, { req }) => {
     return checkFileIsImage(req, 'heroImage')
   }).withMessage('Please upload an image with format (jpeg, png).'),
@@ -37,6 +49,7 @@ const update = [
   check('phone').optional({ nullable: true, checkFalsy: true }).isString().isLength({ min: 1, max: 255 }).trim(),
   check('restaurantCategoryId').exists({ checkNull: true }).isInt({ min: 1 }).toInt(),
   check('userId').not().exists(),
+  check('porcentaje').custom(checkPromocion),
   check('heroImage').custom((value, { req }) => {
     return checkFileIsImage(req, 'heroImage')
   }).withMessage('Please upload an image with format (jpeg, png).'),

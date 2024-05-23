@@ -4,7 +4,7 @@ import { StyleSheet, View, FlatList, ImageBackground, Image, Pressable } from 'r
 import { showMessage } from 'react-native-flash-message'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { getDetail } from '../../api/RestaurantEndpoints'
-import { remove } from '../../api/ProductEndpoints'
+import { remove, promote } from '../../api/ProductEndpoints'
 import ImageCard from '../../components/ImageCard'
 import TextRegular from '../../components/TextRegular'
 import TextSemiBold from '../../components/TextSemibold'
@@ -20,6 +20,19 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
     fetchRestaurantDetail()
   }, [route])
 
+  const promoted = async (product) => {
+    try {
+      await promote(product.id)
+      await fetchRestaurantDetail()
+    } catch (err) {
+      showMessage({
+        message: `There was an error while retrieving restaurants. ${product.id} `,
+        type: 'error',
+        style: GlobalStyles.flashStyle,
+        titleStyle: GlobalStyles.flashTextStyle
+      })
+    }
+  }
   const renderHeader = () => {
     return (
       <View>
@@ -60,12 +73,37 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
         imageUri={item.image ? { uri: process.env.API_BASE_URL + '/' + item.image } : defaultProductImage}
         title={item.name}
       >
+        {item.promocion === 1 &&
+        <TextRegular textStyle={styles.promocion }>{restaurant.porcentaje}%</TextRegular>
+        }
         <TextRegular numberOfLines={2}>{item.description}</TextRegular>
         <TextSemiBold textStyle={styles.price}>{item.price.toFixed(2)}€</TextSemiBold>
         {!item.availability &&
           <TextRegular textStyle={styles.availability }>Not available</TextRegular>
         }
+        {item.promocion === 1 &&
+        <TextRegular textStyle={styles.promocion }>{item.price * (100 - restaurant.porcentaje) / 100}</TextRegular>
+        }
+
          <View style={styles.actionButtonsContainer}>
+          <Pressable
+              onPress={() => { promoted(item) }}
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed
+                    ? GlobalStyles.brandSuccessTap
+                    : GlobalStyles.brandSuccess
+                },
+                styles.actionButton
+              ]}>
+            <View style={[{ flex: 1, flexDirection: 'row', justifyContent: 'center' }]}>
+              <MaterialCommunityIcons name='delete' color={'white'} size={20}/>
+              <TextRegular textStyle={styles.text}>
+                PROMOTE
+              </TextRegular>
+            </View>
+          </Pressable>
+
           <Pressable
             onPress={() => navigation.navigate('EditProductScreen', { id: item.id })
             }
@@ -237,7 +275,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignSelf: 'center',
     flexDirection: 'column',
-    width: '50%'
+    width: '33%'
   },
   actionButtonsContainer: {
     flexDirection: 'row',
